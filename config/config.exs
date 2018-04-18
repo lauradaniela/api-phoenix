@@ -10,17 +10,17 @@ config :api13,
   ecto_repos: [Api13.Repo]
 
 # Configures the endpoint
-config :api13, Api13.Endpoint,
+config :api13, Api13Web.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "lGpby3voM1HmGX3Lq4oQDyhmtgiaNgA4Y3qLyyJJWVxFfsF7NF6VbJ+Lr81YLJGr",
-  render_errors: [view: Api13.ErrorView, accepts: ~w(json)],
+  secret_key_base: "G7aXEzhENAgyWZFBFHyX2jF8N/zN5PMu9QccRHzsZ1GGbqe8t1JQ5C+Ksh68Jvbm",
+  render_errors: [view: Api13Web.ErrorView, accepts: ~w(json)],
   pubsub: [name: Api13.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [:user_id]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

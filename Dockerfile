@@ -8,7 +8,7 @@ RUN mix local.hex --force
 RUN mix local.rebar --force
 
 # Install the Phoenix framework itself
-RUN mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez --force
+RUN mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phx_new.ez
 
 # Install NodeJS 6.x and the NPM
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
@@ -18,6 +18,8 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN apt-get update
 RUN apt-get install -y postgresql-client-9.4
+
+RUN apt-get install -y inotify-tools
 
 # Set /app as workdir
 RUN mkdir /app
