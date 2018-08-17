@@ -9,5 +9,6 @@ defmodule Api13Web.Router do
     pipe_through :api
 
     get "/users", UserController, :index
+    get "/users/:id", UserController, :show
   end
 end

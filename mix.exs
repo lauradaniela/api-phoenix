@@ -38,7 +38,9 @@ defmodule Api13.Mixfile do
       {:phoenix_ecto, "~> 3.2"},
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:earmark, "~>1.1", only: :dev},
+      {:ex_doc, "~>0.11", only: :dev}
     ]
   end
 

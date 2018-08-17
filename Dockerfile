@@ -21,7 +21,25 @@ RUN apt-get install -y postgresql-client-9.4
 
 RUN apt-get install -y inotify-tools
 
+# Install Elixir Deps
+ADD mix.* ./
+RUN MIX_ENV=prod mix local.rebar
+RUN MIX_ENV=prod mix local.hex --force
+RUN MIX_ENV=prod mix deps.get
+
 # Set /app as workdir
 RUN mkdir /app
 ADD . /app
 WORKDIR /app
+
+RUN MIX_ENV=prod mix compile
+
+#Compile assets
+RUN MIX_ENV=prod mix phx.digest
+
+#Exposes this port from the docker container to the host machine
+EXPOSE 4000
+
+#The command to run when this image starts up
+CMD MIX_ENV=prod mix ecto.migrate && \
+  MIX_ENV=prod mix phx.server
